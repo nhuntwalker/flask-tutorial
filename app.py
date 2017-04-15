@@ -1,5 +1,5 @@
 """Quickstart Part 1: The Minimal Application."""
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, render_template
 app = Flask(__name__)
 
 
@@ -10,9 +10,10 @@ def index() -> str:
 
 
 @app.route('/hello')
-def hello() -> str:
+@app.route('/hello/<name>')
+def hello(name: str=None) -> str:
     """Another page."""
-    return "Hello world!"
+    return render_template('hello.html', name=name)
 
 
 @app.route('/user/<username>')
