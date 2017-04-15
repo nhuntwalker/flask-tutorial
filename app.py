@@ -1,5 +1,5 @@
 """Quickstart Part 1: The Minimal Application."""
-from flask import Flask
+from flask import Flask, url_for
 app = Flask(__name__)
 
 
@@ -25,3 +25,10 @@ def show_user_profile(username: str) -> str:
 def show_post(post_id: int) -> str:
     """Show the post with the given id."""
     return f'Post {post_id}'
+
+
+with app.test_request_context():
+    print(url_for('index'))
+    print(url_for('login'))
+    print(url_for('login', next="/"))
+    print(url_for('show_user_profile', username='John Doe'))
