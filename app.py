@@ -1,5 +1,5 @@
 """Quickstart Part 1: The Minimal Application."""
-from flask import Flask, url_for
+from flask import Flask, url_for, request
 app = Flask(__name__)
 
 
@@ -25,6 +25,15 @@ def show_user_profile(username: str) -> str:
 def show_post(post_id: int) -> str:
     """Show the post with the given id."""
     return f'Post {post_id}'
+
+
+@app.route('/methods', methods=['GET', 'POST'])
+def diff_methods() -> str:
+    """Flask routes only respond to GET by default, so have to specify if you want other methods."""
+    if request.method == "GET":
+        print('This was a GET request')
+    else:
+        print('This was a POST request')
 
 
 with app.test_request_context():
