@@ -4,6 +4,12 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world() -> str:
+def index() -> str:
     """The home page of the minimal flask application."""
+    return "Index page!"
+
+
+@app.route('/hello')
+def hello() -> str:
+    """Another page."""
     return "Hello world!"
